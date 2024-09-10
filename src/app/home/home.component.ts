@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { BestSellersComponent } from "../bestSellers/bestSellers.component";
-
+import { BestSellersComponent } from "../best-sellers/best-sellers.component";
 
 @Component({
   selector: 'app-home',

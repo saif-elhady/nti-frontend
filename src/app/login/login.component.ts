@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -31,5 +32,6 @@ export class LoginComponent implements OnInit {
       }
     })
   }
+
   ngOnInit(): void { this.phoneImage = this._AuthService.authPhoto }
 }

@@ -6,18 +6,16 @@ import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 import { GlobalService } from './global.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   hostName: string = '';
   routeName: string = '';
-
   constructor(private _HttpClient: HttpClient, private _Router: Router, private _GlobalService: GlobalService) {
     this.hostName = this._GlobalService.hostName;
-    this.routeName = this._GlobalService.authRoute;    if (localStorage.getItem('user') !== null) {
+    this.routeName = this._GlobalService.authRoute;
+    if (localStorage.getItem('user') !== null) {
       this.saveCurrentUser()
     }
   }
@@ -28,6 +26,7 @@ export class AuthService {
     const token: any = localStorage.getItem('user');
     this.currentUser.next(jwtDecode(token));
   }
+
   checkToken() {
     const token: any = localStorage.getItem('user');
     const decodedToken = jwtDecode(token);
@@ -36,7 +35,6 @@ export class AuthService {
       this._Router.navigate(['/home'])
     }
   }
-
 
   singUp(formData: Signup): Observable<any> {
     return this._HttpClient.post(`${this.hostName}${this.routeName}/signup`, formData)
@@ -55,7 +53,8 @@ export class AuthService {
   }
 
   resetPassword(formData: Login): Observable<any> {
-    return this._HttpClient.put(`${this.hostName}${this.routeName}/resetCode`, formData, { headers: { authorization: `Bearer ${localStorage.getItem('verify')}` } })  }
+    return this._HttpClient.put(`${this.hostName}${this.routeName}/resetCode`, formData, { headers: { authorization: `Bearer ${localStorage.getItem('verify')}` } })
+  }
 
   logout() {
     localStorage.removeItem('user');
