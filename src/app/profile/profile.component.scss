@@ -1,0 +1,34 @@
+.card {
+    border: none;
+    transition: all 0.3s ease;
+  
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: all 0.3s ease;
+  
+    &:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+  }
+  
+  .form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .text-primary {
+    color: #007bff !important;
+  }
+  
+  .img-fluid {
+    max-width: 150px;
+    height: auto;
+    border: 3px solid #007bff;
+  }

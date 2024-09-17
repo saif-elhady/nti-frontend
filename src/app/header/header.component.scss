@@ -1,0 +1,74 @@
+.navbar {
+  background-color: #1a1a1a !important; // Dark background color
+  padding: 1rem 2rem !important;
+
+  .navbar-brand {
+    font-weight: 700 !important;
+    color: #ffffff !important; // White color
+    font-size: 2rem !important; // Increased font size
+    display: flex;
+    align-items: center;
+
+    .fas {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .nav-link {
+    color: #cccccc !important; // Light grey color
+    margin: 0 1.5rem !important; // Increased margin
+    text-decoration: none !important;
+    font-size: 1.2rem !important; // Increased font size
+    display: flex;
+    align-items: center;
+
+    .fas {
+      margin-right: 0 rem;
+    }
+
+    &:hover {
+      color: #00ff00 !important; // Green color on hover
+    }
+
+    &.active {
+      font-weight: bold !important;
+      color: #00ff00 !important; // Green color for active link
+    }
+  }
+
+  .navbar-toggler {
+    border-color: #ffffff !important; // White border color
+    .navbar-toggler-icon {
+      color: #ffffff !important; // White color
+    }
+  }
+
+  .dropdown-menu {
+    background-color: #333333 !important; // Darker background
+    border: none !important;
+    border-radius: 0.25rem !important;
+
+    .dropdown-item {
+      color: #cccccc !important; // Light grey color
+      padding: 0.5rem 1rem !important;
+      &:hover {
+        background-color: #444444 !important; // Darker background on hover
+        color: #ffffff !important; // White color on hover
+      }
+    }
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+
+    .icon-link {
+      color: #cccccc !important; // Light grey color
+      margin-left: 1.5rem !important; // Increased margin
+      font-size: 2rem !important; // Increased font size
+      &:hover {
+        color: #00ff00 !important; // Green color on hover
+      }
+    }
+  }
+}

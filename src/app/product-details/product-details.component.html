@@ -1,104 +1,137 @@
-<div class="container my-5">
-  <div class="row">
-    <div class="col-md-5">
-      <div class="main-img">
-        <img class="img-fluid" [src]="imgDomain+product?.cover" [alt]="product.name">
-        <div class="row my-3 previews">
-          @for(image of product?.images; track image){
-          <div class="col-md-3 my-1">
-            <img class="w-100" [src]="imgDomain+image" [alt]="product.name">
-          </div>
-          }
+<div class="container my-5"></div>
+  <div class="row g-4">
+    <!-- Main Image and Previews -->
+    <div class="col-lg-5">
+      <div class="main-img text-center mb-3">
+        <img class="img-fluid rounded shadow-lg" [src]="imgDomain+product?.cover" [alt]="product.name">
+      </div>
+      <div class="row g-2 previews justify-content-center">
+        <div class="col-3 col-sm-2" *ngFor="let image of product?.images">
+          <img class="img-fluid rounded shadow-sm" [src]="imgDomain+image" [alt]="product.name">
         </div>
       </div>
     </div>
 
-    <div class="col-md-7">
-      <div class="main-description px-2">
-        <div class="category text-bold">{{product?.subcategory?.name}}</div>
-        <div class="product-title text-bold my-3">{{product?.name}}</div>
-        <div class="price-area my-4">
-          <!-- <p class="old-price mb-1"><del>$100</del> <span class="old-price-discount text-danger">(20% off)</span></p> -->
-          <p class="new-price text-bold mb-1">{{product?.price|currency}}</p>
-          <p class="text-secondary mb-1">(Additional tax may apply on checkout)</p>
-          <p class="new-price text-bold mb-1">{{product?.ratingAverage|number:'1.1-1'}} &star;</p>
+    <!-- Product Details and Actions -->
+    <div class="col-lg-7">
+      <div class="main-description">
+        <div class="category text-uppercase fw-bold text-muted mb-2">{{product?.subcategory?.name}}</div>
+        <h1 class="product-title display-5 fw-bold text-primary mb-3">{{product?.name}}</h1>
+
+        <div class="price-area d-flex align-items-center mb-4">
+          <p class="new-price h3 text-success mb-0 me-3">{{product?.price | currency}}</p>
+          <p class="text-muted small mb-0">(Additional tax may apply on checkout)</p>
         </div>
 
-        <div class="buttons d-flex my-5">
-          <div class="block">
-            <button (click)="addToWishlist(product._id)" class="shadow btn btn btn-primary ">Add to Wishlist</button>
-          </div>
-          <div class="block">
-            <button (click)="addToCart(product._id)" class="shadow btn btn btn-success">Add to cart</button>
+        <div class="rating mb-4">
+          <span class="h5 text-warning me-2">{{product?.ratingAverage | number:'1.1-1'}} <i class="fas fa-star"></i></span>
+          <span class="text-muted">({{product?.reviews?.length}} reviews)</span>
+        </div>
+
+        <div class="buttons d-flex flex-wrap gap-2 mb-4">
+          <button (click)="addToCart(product._id)" class="btn btn-primary btn-lg">
+            <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+          </button>
+          <button (click)="addToWishlist(product._id)" class="btn btn-outline-secondary btn-lg">
+            <i class="fas fa-heart me-2"></i> Add to Wishlist
+          </button>
+        </div>
+
+        <div class="product-details mb-4">
+          <h2 class="h5 fw-bold mb-3">Product Details</h2>
+          <p class="text-secondary">{{product?.description}}</p>
+        </div>
+
+        <!-- Contact Questions Section -->
+        <div class="questions bg-light p-3 mb-4 rounded shadow-sm">
+          <div class="d-flex align-items-center">
+            <i class="fa-brands fa-rocketchat fa-2x text-primary me-3"></i>
+            <p class="mb-0">Have a question about our products at E-Store? Feel free to contact our representatives via live chat or email.</p>
           </div>
         </div>
 
-      </div>
-
-      <div class="product-details my-4">
-        <p class="details-title text-color mb-1">Product Details</p>
-        <p class="description">{{product?.description}}</p>
-      </div>
-
-      <div class="row questions bg-light p-3">
-        <div class="col-md-1 icon">
-          <i class="fa-brands fa-rocketchat questions-icon"></i>
+        <!-- Delivery Information -->
+        <div class="delivery mb-4">
+          <h2 class="h5 fw-bold text-info mb-3">
+            <i class="fa-solid fa-truck me-2"></i> Delivery Information
+          </h2>
+          <p class="mb-2"><strong>Estimated Delivery:</strong> 3 days from the date of purchase</p>
+          <p class="text-muted">Order now to get this product delivered on time.</p>
         </div>
-        <div class="col-md-11 text">
-          Have a question about our products at E-Store? Feel free to contact our representatives via live chat or
-          email.
+
+        <div class="delivery-options mb-4">
+          <h2 class="h5 fw-bold text-info mb-3">
+            <i class="fa-solid fa-filter me-2"></i> Delivery Options
+          </h2>
+          <p class="text-muted">View available delivery options <a href="#" class="text-decoration-none">here</a>.</p>
+        </div>
+        
+        <!-- Review Button -->
+        <button class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#reviewModal">
+          <i class="fas fa-pen me-2"></i> Write a Review
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reviews Section -->
+  <div class="row mt-5">
+    <div class="col-12">
+      <h2 class="text-center mb-4">Product Reviews</h2>
+      <div *ngFor="let review of product?.reviews" class="card mb-3">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="card-title text-primary mb-0">{{review?.user?.name}}</h5>
+            <div class="text-warning">
+              <i class="fas fa-star" *ngFor="let star of [].constructor(review?.rating)"></i>
+            </div>
+          </div>
+          <p class="card-text">{{review?.comment}}</p>
+          <p class="card-text"><small class="text-muted">{{review?.createdAt | date}}</small></p>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="delivery my-4">
-        <p class="font-weight-bold mb-0"><span><i class="fa-solid fa-truck"></i></span> <b>Delivery done in 3 days from
-            date of purchase</b> </p>
-        <p class="text-secondary">Order now to get this product delivery</p>
-      </div>
 
-      <div class="delivery-options my-4">
-        <p class="font-weight-bold mb-0"><span><i class="fa-solid fa-filter"></i></span> <b>Delivery options</b> </p>
-        <p class="text-secondary">View delivery options here</p>
+<!-- Modal Structure for Review Form -->
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="reviewModalLabel">Write a Review</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <hr class="m-5">
-      <div name="reviews">
-        <form [formGroup]="reviewForm" (ngSubmit)="addReview(product._id,reviewForm)">
-          <div class="form-floating">
-            <textarea class="form-control" formControlName="comment" placeholder="Leave a comment here"
-              id="floatingTextarea"></textarea>
-            <label for="floatingTextarea">Review</label>
+      <div class="modal-body">
+        <form [formGroup]="reviewForm" (ngSubmit)="addReview(product._id, reviewForm)">
+          <div class="mb-3">
+            <label for="comment" class="form-label">Your Review</label>
+            <textarea class="form-control" formControlName="comment" id="comment" rows="3" placeholder="Share your thoughts about the product"></textarea>
           </div>
-          <div class="mt-3 text-danger">
-            @if(reviewError!==''){ <label for="">{{reviewError}}</label> }
+
+          <div class="mb-3">
+            <label class="form-label">Rating</label>
+            <div class="rating">
+              <input type="radio" formControlName="rating" id="star5" value="5" hidden />
+              <label for="star5"><i class="fas fa-star"></i></label>
+              <input type="radio" formControlName="rating" id="star4" value="4" hidden />
+              <label for="star4"><i class="fas fa-star"></i></label>
+              <input type="radio" formControlName="rating" id="star3" value="3" hidden />
+              <label for="star3"><i class="fas fa-star"></i></label>
+              <input type="radio" formControlName="rating" id="star2" value="2" hidden />
+              <label for="star2"><i class="fas fa-star"></i></label>
+              <input type="radio" formControlName="rating" id="star1" value="1" hidden />
+              <label for="star1"><i class="fas fa-star"></i></label>
+            </div>
           </div>
-          <div class="rating">
-            <input type="radio" formControlName="rating" id="star5" name="rating" value="5" />
-            <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
-            <input type="radio" formControlName="rating" id="star4" name="rating" value="4" />
-            <label class="star" for="star4" title="Great" aria-hidden="true"></label>
-            <input type="radio" formControlName="rating" id="star3" name="rating" value="3" />
-            <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
-            <input type="radio" formControlName="rating" id="star2" name="rating" value="2" />
-            <label class="star" for="star2" title="Good" aria-hidden="true"></label>
-            <input type="radio" formControlName="rating" id="star1" name="rating" value="1" />
-            <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
-            <button class="btn btn-success shadow mt-2 mx-3">Add Review</button>
+
+          <div class="text-danger mb-3" *ngIf="reviewError">
+            {{ reviewError }}
           </div>
+
+          <button type="submit" class="btn btn-primary w-100">Submit Review</button>
         </form>
       </div>
-    </div>
-    <div class="container">
-      <hr class="my-3">
-      <h2 class="text-center">Product Reviews</h2>
-      <hr class="my-3">
-      @for(review of product?.reviews; track review._id){
-      <div>
-        <h4>{{review?.user?.name}}</h4>
-        <p>{{review?.comment}} - {{review?.rating}}&star;</p>
-        <p>{{review?.createdAt|date}}</p>
-        <hr class="my-4">
-      </div>
-    }
     </div>
   </div>
 </div>

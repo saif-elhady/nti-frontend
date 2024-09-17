@@ -1,44 +1,52 @@
-<div class="cart-wrap">
+<section class="wishlist-section py-5"></section>
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <div class="main-heading mb-10">My wishlist</div>
-        <div class="table-wishlist">
-          <table cellpadding="0" cellspacing="0" border="0" width="100%">
-            <thead>
+      <div class="col-12">
+        <h2 class="mb-4">My Wishlist</h2>
+        @if(wishlist && wishlist.length > 0){
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead class="table-light">
               <tr>
-                <th width="45%">Product Name</th>
-                <th width="15%">Subcategory</th>
-                <th width="15%">Unit Price</th>
-                <th width="15%"></th>
-                <th width="10%"></th>
+                <th scope="col" style="width: 50%">Product</th>
+                <th scope="col" style="width: 15%">Subcategory</th>
+                <th scope="col" style="width: 15%">Price</th>
+                <th scope="col" style="width: 20%">Actions</th>
               </tr>
             </thead>
             <tbody>
               @for(product of wishlist; track product._id){
               <tr>
-                <td width="45%">
-                  <div class="display-flex align-center">
-                    <div class="img-product">
-                      <img [src]="productImage+product?.cover" [alt]="product?.name" class="mCS_img_loaded">
-                    </div>
-                    <div class="name-product">
-                      {{product?.name}}
-                    </div>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <img [src]="productImage+product?.cover" [alt]="product?.name" class="img-thumbnail me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                    <span>{{product?.name}}</span>
                   </div>
                 </td>
-                <td width="15%">{{product?.subcategory?.name}}</td>
-                <td width="15%">{{product?.price|currency}}</td>
-                <td width="15%"><button (click)="addToCart(product._id)" class="btn btn-danger rounded-5">Add to
-                    Cart</button></td>
-                <td width="10%"><button (click)="removeFromWishlist(product._id)" class="trash-icon nav-link"><i
-                      class="far fa-trash-alt"></i></button></td>
+                <td>{{product?.subcategory?.name}}</td>
+                <td>{{product?.price | currency}}</td>
+                <td>
+                  <button (click)="addToCart(product._id)" class="btn btn-primary btn-sm me-2">
+                    <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                  </button>
+                  <button (click)="removeFromWishlist(product._id)" class="btn btn-outline-danger btn-sm">
+                    <i class="far fa-trash-alt"></i>
+                  </button>
+                </td>
               </tr>
               }
             </tbody>
           </table>
         </div>
+        }
+        @else {
+        <div class="text-center py-5">
+          <i class="far fa-heart fa-3x text-muted mb-3"></i>
+          <h5 class="text-muted">Your wishlist is empty</h5>
+          <p class="text-muted">Add items to your wishlist to save them for later</p>
+          <a routerLink="/products" class="btn btn-primary mt-3">Browse Products</a>
+        </div>
+        }
       </div>
     </div>
   </div>
-</div>

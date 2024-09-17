@@ -1,147 +1,140 @@
-.text-bold {
-  font-weight: 800;
+.container {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
-text-color {
-  color: #0093c4;
-}
-
-/* Main image - left */
 .main-img img {
-  width: 100%;
+  border: 2px solid #333333; // Dark border to match the header
+  border-radius: 0.25rem; // Rounded corners
 }
 
-/* Preview images */
 .previews img {
-  width: 100%;
-  height: 140px;
+  border: 2px solid #333333; // Dark border to match the header
+  border-radius: 0.25rem; // Rounded corners
 }
 
 .main-description .category {
-  text-transform: uppercase;
-  color: #0093c4;
+  font-size: 1.2rem; // Increased font size
+  color: #aaaaaa; // Light grey color to match the header
 }
 
 .main-description .product-title {
-  font-size: 2.5rem;
+  font-size: 2rem; // Increased font size
+  color: #ffffff; // White color to match the header
 }
 
-.old-price-discount {
-  font-weight: 600;
+.main-description .price-area .new-price {
+  font-size: 1.5rem; // Adjusted font size
+  color: #00ff00; // Green color to match the header hover color
 }
 
-.new-price {
-  font-size: 2rem;
+.main-description .price-area .text-muted {
+  font-size: 0.9rem; // Adjusted font size
+  color: #aaaaaa; // Light grey color to match the header
 }
 
-.details-title {
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 1.2rem;
-  color: #757575;
+.main-description .rating .text-warning {
+  font-size: 1.2rem; // Adjusted font size
+  color: #ffcc00; // Yellow color for rating stars
 }
 
-.buttons .block {
-  margin-right: 5px;
+.main-description .rating .text-muted {
+  font-size: 0.9rem; // Adjusted font size
+  color: #aaaaaa; // Light grey color to match the header
 }
 
-.quantity input {
-  border-radius: 0;
-  height: 40px;
-
-}
-
-
-.custom-btn {
-  text-transform: capitalize;
-  background-color: #0093c4;
-  color: white;
-  width: 150px;
-  height: 40px;
-  border-radius: 0;
-}
-
-.custom-btn:hover {
-  background-color: #0093c4 !important;
-  font-size: 18px;
-  color: white !important;
-}
-
-.similar-product img {
-  height: 400px;
-}
-
-.similar-product {
-  text-align: left;
-}
-
-.similar-product .title {
-  margin: 17px 0px 4px 0px;
-}
-
-.similar-product .price {
-  font-weight: bold;
-}
-
-.questions .icon i {
-  font-size: 2rem;
-}
-
-.questions-icon {
-  font-size: 2rem;
-  color: #0093c4;
-}
-
-
-/* Small devices (landscape phones, less than 768px) */
-@media (max-width: 767.98px) {
-
-  /* Make preview images responsive  */
-  .previews img {
-    width: 100%;
-    height: auto;
-  }
-
-}
-
-// reviews starts
-
-body {
-  margin: 40px;
-}
-
-.rating {
-  margin-top: 40px;
+.main-description .buttons .btn-primary {
+  background-color: #007bff; // Blue color for primary button
   border: none;
-  float: left;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  &:hover {
+    background-color: #0056b3; // Darker blue color on hover
+  }
 }
 
-.rating>label {
-  color: #90A0A3;
-  float: right;
+.main-description .buttons .btn-outline-secondary {
+  border-color: #aaaaaa; // Light grey border color
+  color: #aaaaaa; // Light grey text color
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  &:hover {
+    border-color: #00ff00; // Green border color on hover
+    color: #00ff00; // Green text color on hover
+  }
 }
 
-.rating>label:before {
-  margin: 5px;
-  font-size: 2em;
-  font-family: FontAwesome;
-  content: "\f005";
-  display: inline-block;
+.main-description .product-details .text-secondary {
+  font-size: 1rem; // Adjusted font size
+  color: #aaaaaa; // Light grey color to match the header
 }
 
-.rating>input {
-  display: none;
+.main-description .questions {
+  background-color: #2c3e50; // Dark background color to match the header
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); // Light shadow
 }
 
-.rating>input:checked~label,
-.rating:not(:checked)>label:hover,
-.rating:not(:checked)>label:hover~label {
-  color: #F79426;
+.main-description .questions .fa-rocketchat {
+  color: #007bff; // Blue color for icon
 }
 
-.rating>input:checked+label:hover,
-.rating>input:checked~label:hover,
-.rating>label:hover~input:checked~label,
-.rating>input:checked~label:hover~label {
-  color: #FECE31;
+.main-description .delivery .text-info {
+  font-size: 1.2rem; // Adjusted font size
+  color: #17a2b8; // Info color
+}
+
+.main-description .delivery .text-muted {
+  font-size: 0.9rem; // Adjusted font size
+  color: #aaaaaa; // Light grey color to match the header
+}
+
+.main-description .delivery-options .text-info {
+  font-size: 1.2rem; // Adjusted font size
+  color: #17a2b8; // Info color
+}
+
+.main-description .delivery-options .text-muted {
+  font-size: 0.9rem; // Adjusted font size
+  color: #aaaaaa; // Light grey color to match the header
+}
+
+.modal-header {
+  background-color: #333333; // Dark background color to match the header
+  color: #ffffff; // White text color
+}
+
+.modal-header .btn-close {
+  filter: invert(1); // Invert color for close button
+}
+
+.modal-body .form-label {
+  color: #aaaaaa; // Light grey text color
+}
+
+.modal-body .form-control {
+  background-color: #2c3e50; // Dark background color
+  color: #ffffff; // White text color
+  border-radius: 0.25rem;
+  border: 1px solid #aaaaaa; // Light grey border color
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.modal-body .rating label {
+  color: #ffcc00; // Yellow color for rating stars
+}
+
+.modal-body .btn-primary {
+  background-color: #007bff; // Blue color for primary button
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  &:hover {
+    background-color: #0056b3; // Darker blue color on hover
+  }
 }

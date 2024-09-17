@@ -1,0 +1,13 @@
+footer a:hover {
+    color: #fff !important;
+    text-decoration: underline !important;
+    margin-top: auto;
+  }
+  
+  .social-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    transform: translateY(-3px);
+  }
