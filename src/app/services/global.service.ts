@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class GlobalService {
 
   // hostName: string = 'http://localhost:3300';
-  hostName: string = 'https://api.nti.giize.com';
+  hostName: string = 'http://localhost:4500';
   authRoute: string = '/api/v1/auth';
   productsRoute: string = '/api/v1/products';
   cartRoute: string = '/api/v1/carts';
